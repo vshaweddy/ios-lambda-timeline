@@ -19,7 +19,8 @@ Though you have a base project, you will need to modify it. To begin, run `pod i
 1. Create a new Firebase project (or use an existing one).
 2. Change the project's bundle identifier to your own bundle identifier (e.g. `com.JohnSmith.LambdaTimeline`)
 3. In the "Project Overview" in your Firebase project, you will need to add your app as we are using the Firebase SDK in our Xcode project. You will need to add the "GoogleService-Info.plist" file that will be given to you when you add the app.
-4. In the Firebase project's database, change the rules to:
+4. Please refer to this page: https://firebase.google.com/docs/auth/ios/firebaseui and follow the steps under the “Set up sign-in methods”. You will only need to do the two steps under the Google section. The starter project will have that URL type already. You just need to put the right URL scheme in. You can find the URL Type in your project file in the “Info” tab at the top.
+5. In the Firebase project's database, change the rules to:
 ``` JSON
 {
   "rules": {
@@ -30,7 +31,7 @@ Though you have a base project, you will need to modify it. To begin, run `pod i
 ```
 This will allow only users of the app who are authenticated to access the database. (Authentication is already taken care of in the starter project)
 
-5. In the left pane of your Firebase project under "Develop", click the Storage item. Click the "Get Started" button and it will pull up a modal window about security rules. Simply click "Got it". It will set Storage's rules to allow access to any authenticated user, which works great for our uses.
+6. In the left pane of your Firebase project under "Develop", click the Storage item. Click the "Get Started" button and it will pull up a modal window about security rules. Simply click "Got it". It will set Storage's rules to allow access to any authenticated user, which works great for our uses.
 
 Firebase Storage is essentially a Google Drive for data in your Firebase. It makes sense to use Storage in this application as we will be storing images, audio, and video data. If you're curious as to how Database and Storage interact, feel free to read Firebase's Storage documentation and look at the code in the base project. Particularly in the `Post`, `Media` and `PostController` objects. (Don't feel like you have to, however)
 
