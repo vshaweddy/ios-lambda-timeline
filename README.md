@@ -12,10 +12,6 @@ For today, you will implement the ability to add filters to images you post.
 
 Please fork and clone this repository, and work from the base project in the repo.
 
-Please look at the screen recording below to know what the finished project should look like:
-
-![](https://user-images.githubusercontent.com/16965587/46393849-2d322f80-c6a4-11e8-9c96-d7dbeb7dd8af.gif)
-
 ### Part 1 - Firebase Setup
 
 Though you have a base project, you will need to modify it. 
