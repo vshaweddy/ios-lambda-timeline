@@ -14,7 +14,7 @@ Please fork and clone this repository, and work from the base project in the rep
 
 ### Part 1 - Firebase Setup
 
-Though you have a base project, you will need to modify it. 
+Though you have a base project, you will need to modify it. To begin, run `pod install` after navigating to the repo in terminal. Work out of the generated `.xcworkspace`
 
 1. Create a new Firebase project (or use an existing one).
 2. Change the project's bundle identifier to your own bundle identifier (e.g. `com.JohnSmith.LambdaTimeline`)
