@@ -10,7 +10,7 @@ Today you will be adding video posts.
 
 Create a new branch in the repository called `videoPosts` and work off of it from where you left off yesterday.
 
-You're welcome to fulfill these instructions however you want. If you'd like suggestions on how to implement something, open the disclosure triangle and there are some suggestions for most of the instructions.
+You're welcome to fulfill these instructions however you want. There are a few suggestions to help you along if you need them.
 
 1. Create UI that allows the user to create a video post. The UI should allow the user to record a video. Once the video has been recorded, it should play back the video (the playback can be looped if you want), allow the user to add a title just like in an image post, then post it.
     <details><summary>Recording UI Suggestions</summary>
