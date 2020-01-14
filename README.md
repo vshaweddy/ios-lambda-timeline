@@ -16,6 +16,8 @@ Please fork and clone this repository, and work from the base project in the rep
 
 Though you have a base project, you will need to modify it. To begin, run `pod install` after navigating to the repo in terminal. Work out of the generated `.xcworkspace`
 
+[Watch the iOS Firebase Authentication Video](https://youtu.be/vGeuZtHmcMM) to follow these steps
+
 1. Create a new Firebase project (or use an existing one).
 2. Change the project's bundle identifier to your own bundle identifier (e.g. `com.JohnSmith.LambdaTimeline`)
 3. In the "Project Overview" in your Firebase project, you will need to add your app as we are using the Firebase SDK in our Xcode project. You will need to add the "GoogleService-Info.plist" file that will be given to you when you add the app.
