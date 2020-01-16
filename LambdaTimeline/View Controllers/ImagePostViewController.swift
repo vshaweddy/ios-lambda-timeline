@@ -76,16 +76,21 @@ class ImagePostViewController: ShiftableViewController {
     
     private func image(byFiltering inputImage: CIImage) -> UIImage {
         
-        vibranceFilter.inputImage = inputImage
+        var tempImage: CIImage? = inputImage
+        
+        vibranceFilter.inputImage = tempImage
         vibranceFilter.amount = self.vibranceSlider.value
+        tempImage = vibranceFilter.outputImage
         
-        exposureFilter.inputImage = vibranceFilter.inputImage
+        exposureFilter.inputImage = tempImage
         exposureFilter.ev = self.exposureSlider.value
+        tempImage = exposureFilter.outputImage
         
-        sepiaFilter.inputImage = vibranceFilter.inputImage
+        sepiaFilter.inputImage = tempImage
         sepiaFilter.intensity = sepiaSlider.value
+        tempImage = sepiaFilter.outputImage
         
-        guard let outputImage = sepiaFilter.outputImage else { return UIImage(ciImage: inputImage) }
+        guard let outputImage = tempImage else { return UIImage(ciImage: inputImage) }
         
         guard let renderedImage = context.createCGImage(outputImage, from: outputImage.extent) else { return UIImage(ciImage: inputImage) }
         
