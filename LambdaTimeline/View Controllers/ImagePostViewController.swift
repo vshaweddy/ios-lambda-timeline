@@ -21,6 +21,7 @@ class ImagePostViewController: ShiftableViewController {
     @IBOutlet weak var vibranceSlider: UISlider!
     @IBOutlet weak var exposureSlider: UISlider!
     @IBOutlet weak var sepiaSlider: UISlider!
+    @IBOutlet weak var radialGradientSlider: UISlider!
     
     var postController: PostController!
     var post: Post?
@@ -29,9 +30,10 @@ class ImagePostViewController: ShiftableViewController {
     var originalImage: UIImage?
     
     private let context = CIContext(options: nil)
-    private var vibranceFilter = CIFilter.vibrance()
-    private var exposureFilter = CIFilter.exposureAdjust()
+    private let vibranceFilter = CIFilter.vibrance()
+    private let exposureFilter = CIFilter.exposureAdjust()
     private let sepiaFilter = CIFilter.sepiaTone()
+    private let radialGradientFilter = CIFilter.radialGradient()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,25 +78,54 @@ class ImagePostViewController: ShiftableViewController {
     
     private func image(byFiltering inputImage: CIImage) -> UIImage {
         
-        var tempImage: CIImage? = inputImage
+        var tempImage: CIImage = inputImage
+
         
-        vibranceFilter.inputImage = tempImage
-        vibranceFilter.amount = self.vibranceSlider.value
-        tempImage = vibranceFilter.outputImage
+        tempImage = self.vibrance(for: tempImage)
+        tempImage = self.sepia(for: tempImage)
+        tempImage = self.exposure(for: tempImage)
+        tempImage = self.radialGradient(for: tempImage)
         
-        exposureFilter.inputImage = tempImage
-        exposureFilter.ev = self.exposureSlider.value
-        tempImage = exposureFilter.outputImage
-        
-        sepiaFilter.inputImage = tempImage
-        sepiaFilter.intensity = sepiaSlider.value
-        tempImage = sepiaFilter.outputImage
-        
-        guard let outputImage = tempImage else { return UIImage(ciImage: inputImage) }
-        
-        guard let renderedImage = context.createCGImage(outputImage, from: outputImage.extent) else { return UIImage(ciImage: inputImage) }
+        guard let renderedImage = context.createCGImage(tempImage, from: tempImage.extent) else { return UIImage(ciImage: inputImage) }
         
         return UIImage(cgImage: renderedImage)
+    }
+    
+    private func vibrance(for image: CIImage) -> CIImage {
+        vibranceFilter.inputImage = image
+        vibranceFilter.amount = self.vibranceSlider.value
+        return vibranceFilter.outputImage ?? image
+    }
+    
+    private func sepia(for image: CIImage) -> CIImage {
+        sepiaFilter.inputImage = image
+        sepiaFilter.intensity = sepiaSlider.value
+        return sepiaFilter.outputImage ?? image
+    }
+    
+    private func exposure(for image: CIImage) -> CIImage {
+        exposureFilter.inputImage = image
+        exposureFilter.ev = self.exposureSlider.value
+        return exposureFilter.outputImage ?? image
+    }
+    
+    private func radialGradient(for image: CIImage) -> CIImage {
+        
+        if self.radialGradientSlider.value > 0.0 {
+            let imageExtent = image.extent
+            let center = CIVector(x: imageExtent.width/2.0, y: imageExtent.height/2.0)
+            let smallerDimension = min(imageExtent.width, imageExtent.height)
+            let largerDimension = max(imageExtent.width, imageExtent.height)
+            // first filter
+            radialGradientFilter.setValue(center, forKey: "inputCenter")
+            radialGradientFilter.setValue(smallerDimension/2.0 * 0.2, forKey: "inputRadius0")
+            radialGradientFilter.setValue(largerDimension/2.0, forKey: "inputRadius1")
+            let radialGradientImage = radialGradientFilter.outputImage!
+            // second filter
+            return image.applyingFilter("CIBlendWithMask", parameters: ["inputMaskImage" : radialGradientImage])
+        } else {
+            return image
+        }
     }
     
     private func updateImage() {
@@ -114,6 +145,11 @@ class ImagePostViewController: ShiftableViewController {
     @IBAction func sepiaPressed(_ sender: Any) {
         self.updateImage()
     }
+    
+    @IBAction func radialGradientPressed(_ sender: Any) {
+        self.updateImage()
+    }
+    
     
     @IBAction func createPost(_ sender: Any) {
         
