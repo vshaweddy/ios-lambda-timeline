@@ -19,7 +19,9 @@ class ImagePostViewController: ShiftableViewController {
     @IBOutlet weak var imageHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var postButton: UIBarButtonItem!
     @IBOutlet weak var vibranceSlider: UISlider!
-
+    @IBOutlet weak var exposureSlider: UISlider!
+    @IBOutlet weak var sepiaSlider: UISlider!
+    
     var postController: PostController!
     var post: Post?
     var imageData: Data?
@@ -28,6 +30,8 @@ class ImagePostViewController: ShiftableViewController {
     
     private let context = CIContext(options: nil)
     private var vibranceFilter = CIFilter.vibrance()
+    private var exposureFilter = CIFilter.exposureAdjust()
+    private let sepiaFilter = CIFilter.sepiaTone()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,7 +78,14 @@ class ImagePostViewController: ShiftableViewController {
         
         vibranceFilter.inputImage = inputImage
         vibranceFilter.amount = self.vibranceSlider.value
-        guard let outputImage = vibranceFilter.outputImage else { return UIImage(ciImage: inputImage) }
+        
+        exposureFilter.inputImage = vibranceFilter.inputImage
+        exposureFilter.ev = self.exposureSlider.value
+        
+        sepiaFilter.inputImage = vibranceFilter.inputImage
+        sepiaFilter.intensity = sepiaSlider.value
+        
+        guard let outputImage = sepiaFilter.outputImage else { return UIImage(ciImage: inputImage) }
         
         guard let renderedImage = context.createCGImage(outputImage, from: outputImage.extent) else { return UIImage(ciImage: inputImage) }
         
@@ -91,6 +102,13 @@ class ImagePostViewController: ShiftableViewController {
         self.updateImage()
     }
     
+    @IBAction func exposurePressed(_ sender: Any) {
+        self.updateImage()
+    }
+    
+    @IBAction func sepiaPressed(_ sender: Any) {
+        self.updateImage()
+    }
     
     @IBAction func createPost(_ sender: Any) {
         
