@@ -166,6 +166,9 @@
                                                     </label>
                                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="m0z-Am-cih">
                                                         <rect key="frame" x="123" y="0.0" width="238" height="31"/>
+                                                        <connections>
+                                                            <action selector="vibrancePressed:" destination="1Aw-4e-BW2" eventType="valueChanged" id="kqK-Ba-J8L"/>
+                                                        </connections>
                                                     </slider>
                                                 </subviews>
                                             </stackView>
@@ -264,6 +267,7 @@
                         <outlet property="imageView" destination="4eK-5F-H5h" id="e7m-c5-Xhz"/>
                         <outlet property="postButton" destination="hsH-Uv-tug" id="ZBn-KE-cpU"/>
                         <outlet property="titleTextField" destination="Op6-OA-6Ou" id="JEe-cj-4mv"/>
+                        <outlet property="vibranceSlider" destination="m0z-Am-cih" id="yIq-eN-Ec2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XXa-A2-VJT" userLabel="First Responder" sceneMemberID="firstResponder"/>

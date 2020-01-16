@@ -8,8 +8,26 @@
 
 import UIKit
 import Photos
+import CoreImage.CIFilterBuiltins
 
+@available(iOS 13.0, *)
 class ImagePostViewController: ShiftableViewController {
+    
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var titleTextField: UITextField!
+    @IBOutlet weak var chooseImageButton: UIButton!
+    @IBOutlet weak var imageHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var postButton: UIBarButtonItem!
+    @IBOutlet weak var vibranceSlider: UISlider!
+
+    var postController: PostController!
+    var post: Post?
+    var imageData: Data?
+    
+    var originalImage: UIImage?
+    
+    private let context = CIContext(options: nil)
+    private var vibranceFilter = CIFilter.vibrance()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,6 +69,28 @@ class ImagePostViewController: ShiftableViewController {
 
         present(imagePicker, animated: true, completion: nil)
     }
+    
+    private func image(byFiltering inputImage: CIImage) -> UIImage {
+        
+        vibranceFilter.inputImage = inputImage
+        vibranceFilter.amount = self.vibranceSlider.value
+        guard let outputImage = vibranceFilter.outputImage else { return UIImage(ciImage: inputImage) }
+        
+        guard let renderedImage = context.createCGImage(outputImage, from: outputImage.extent) else { return UIImage(ciImage: inputImage) }
+        
+        return UIImage(cgImage: renderedImage)
+    }
+    
+    private func updateImage() {
+        if let originalImage = originalImage, let image = CIImage(image: originalImage) {
+            imageView.image = self.image(byFiltering: image)
+        }
+    }
+    
+    @IBAction func vibrancePressed(_ sender: Any) {
+        self.updateImage()
+    }
+    
     
     @IBAction func createPost(_ sender: Any) {
         
@@ -111,16 +151,6 @@ class ImagePostViewController: ShiftableViewController {
         
         view.layoutSubviews()
     }
-    
-    var postController: PostController!
-    var post: Post?
-    var imageData: Data?
-    
-    @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var titleTextField: UITextField!
-    @IBOutlet weak var chooseImageButton: UIButton!
-    @IBOutlet weak var imageHeightConstraint: NSLayoutConstraint!
-    @IBOutlet weak var postButton: UIBarButtonItem!
 }
 
 extension ImagePostViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -134,6 +164,7 @@ extension ImagePostViewController: UIImagePickerControllerDelegate, UINavigation
         guard let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else { return }
         
         imageView.image = image
+        self.originalImage = image
         
         setImageViewHeight(with: image.ratio)
     }
