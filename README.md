@@ -37,8 +37,27 @@ You're welcome to fulfill these instructions however you want. If you'd like sug
 
 4. In the `PostController`, add the ability to create a comment with the audio data that the user records, and save it to Firebase Storage, add the comment to its post, then save the post to the Firebase Database.
 
+<<<<<<< HEAD
     <details><summary>Post Controller Suggestions</summary>
     <p>
+=======
+[Watch the iOS Firebase Authentication Video](https://youtu.be/vGeuZtHmcMM) to follow these steps
+
+1. Create a new Firebase project (or use an existing one).
+2. Change the project's bundle identifier to your own bundle identifier (e.g. `com.JohnSmith.LambdaTimeline`)
+3. In the "Project Overview" in your Firebase project, you will need to add your app as we are using the Firebase SDK in our Xcode project. You will need to add the "GoogleService-Info.plist" file that will be given to you when you add the app.
+4. Please refer to this page: https://firebase.google.com/docs/auth/ios/firebaseui and follow the steps under the “Set up sign-in methods”. You will only need to do the two steps under the Google section. The starter project will have that URL type already. You just need to put the right URL scheme in. You can find the URL Type in your project file in the “Info” tab at the top.
+5. In the Firebase project's database, change the rules to:
+``` JSON
+{
+  "rules": {
+    ".read": "auth != null",
+    ".write": "auth != null"
+  }
+}
+```
+This will allow only users of the app who are authenticated to access the database. (Authentication is already taken care of in the starter project)
+>>>>>>> 0e23d029910b56eb4b31c557d65122a8defdca4b
 
       - Create a separate function to create a comment with the audio data.
       - You can very easily change the `store` method to instead take in data and a `StorageReference` to accomodate for storing both Post media data and now the audio data as well.
