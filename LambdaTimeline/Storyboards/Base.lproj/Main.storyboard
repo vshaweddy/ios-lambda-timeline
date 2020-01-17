@@ -159,13 +159,13 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="359" height="30"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vibrance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TGL-s4-a0c">
-                                                        <rect key="frame" x="0.0" y="0.0" width="48" height="30"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="43" height="30"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="m0z-Am-cih">
-                                                        <rect key="frame" x="103" y="0.0" width="258" height="31"/>
+                                                        <rect key="frame" x="98" y="0.0" width="263" height="31"/>
                                                         <connections>
                                                             <action selector="vibrancePressed:" destination="1Aw-4e-BW2" eventType="valueChanged" id="kqK-Ba-J8L"/>
                                                         </connections>
@@ -176,64 +176,67 @@
                                                 <rect key="frame" x="0.0" y="50" width="359" height="30"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Exposure" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vB5-Xo-7Rw">
-                                                        <rect key="frame" x="0.0" y="0.0" width="48" height="30"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="43" height="30"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="YLr-EW-yCY">
-                                                        <rect key="frame" x="103" y="0.0" width="258" height="31"/>
+                                                        <rect key="frame" x="98" y="0.0" width="263" height="31"/>
                                                         <connections>
                                                             <action selector="exposurePressed:" destination="1Aw-4e-BW2" eventType="valueChanged" id="AnP-Ag-RSb"/>
                                                         </connections>
                                                     </slider>
                                                 </subviews>
                                             </stackView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="57" translatesAutoresizingMaskIntoConstraints="NO" id="FjT-SJ-tyb" userLabel="Vibrance Stack View">
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="57" translatesAutoresizingMaskIntoConstraints="NO" id="FjT-SJ-tyb" userLabel="Sepia Stack View">
                                                 <rect key="frame" x="0.0" y="100" width="359" height="30"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sepia" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eqW-tb-Pnn">
-                                                        <rect key="frame" x="0.0" y="0.0" width="48" height="30"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="43" height="30"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="2b0-v0-sh5">
-                                                        <rect key="frame" x="103" y="0.0" width="258" height="31"/>
+                                                        <rect key="frame" x="98" y="0.0" width="263" height="31"/>
                                                         <connections>
                                                             <action selector="sepiaPressed:" destination="1Aw-4e-BW2" eventType="valueChanged" id="F2H-1K-hqs"/>
                                                         </connections>
                                                     </slider>
                                                 </subviews>
                                             </stackView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="57" translatesAutoresizingMaskIntoConstraints="NO" id="qez-Gc-NZB" userLabel="Vibrance Stack View">
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="57" translatesAutoresizingMaskIntoConstraints="NO" id="qez-Gc-NZB" userLabel="Radial Gradient Stack View">
                                                 <rect key="frame" x="0.0" y="150" width="359" height="30"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Radial Gradient" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bkw-57-O2p">
-                                                        <rect key="frame" x="0.0" y="0.0" width="48" height="30"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="43" height="30"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="JxR-JA-gno">
-                                                        <rect key="frame" x="103" y="0.0" width="258" height="31"/>
+                                                        <rect key="frame" x="98" y="0.0" width="263" height="31"/>
                                                         <connections>
                                                             <action selector="radialGradientPressed:" destination="1Aw-4e-BW2" eventType="valueChanged" id="R8N-nM-ZeR"/>
                                                         </connections>
                                                     </slider>
                                                 </subviews>
                                             </stackView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="57" translatesAutoresizingMaskIntoConstraints="NO" id="2Ab-gV-Vfw" userLabel="Vibrance Stack View">
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="57" translatesAutoresizingMaskIntoConstraints="NO" id="2Ab-gV-Vfw" userLabel="Pixellate Stack View">
                                                 <rect key="frame" x="0.0" y="200" width="359" height="30"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vibrance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6aY-g5-hAz">
-                                                        <rect key="frame" x="0.0" y="0.0" width="48" height="30"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pixellate" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6aY-g5-hAz">
+                                                        <rect key="frame" x="0.0" y="0.0" width="43" height="30"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="9RS-I5-p5i">
-                                                        <rect key="frame" x="103" y="0.0" width="258" height="31"/>
+                                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="9RS-I5-p5i">
+                                                        <rect key="frame" x="98" y="0.0" width="263" height="31"/>
+                                                        <connections>
+                                                            <action selector="pixelPressed:" destination="1Aw-4e-BW2" eventType="valueChanged" id="nW6-dw-qKK"/>
+                                                        </connections>
                                                     </slider>
                                                 </subviews>
                                             </stackView>
@@ -281,6 +284,7 @@
                         <outlet property="exposureSlider" destination="YLr-EW-yCY" id="yYl-fL-4nU"/>
                         <outlet property="imageHeightConstraint" destination="MHD-wr-Gq9" id="HyG-8g-Ck1"/>
                         <outlet property="imageView" destination="4eK-5F-H5h" id="e7m-c5-Xhz"/>
+                        <outlet property="pixelSlider" destination="9RS-I5-p5i" id="j80-o3-U66"/>
                         <outlet property="postButton" destination="hsH-Uv-tug" id="ZBn-KE-cpU"/>
                         <outlet property="radialGradientSlider" destination="JxR-JA-gno" id="pn1-x1-F61"/>
                         <outlet property="sepiaSlider" destination="2b0-v0-sh5" id="Goj-Gx-IKb"/>

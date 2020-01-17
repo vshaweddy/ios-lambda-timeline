@@ -22,6 +22,7 @@ class ImagePostViewController: ShiftableViewController {
     @IBOutlet weak var exposureSlider: UISlider!
     @IBOutlet weak var sepiaSlider: UISlider!
     @IBOutlet weak var radialGradientSlider: UISlider!
+    @IBOutlet weak var pixelSlider: UISlider!
     
     var postController: PostController!
     var post: Post?
@@ -34,6 +35,7 @@ class ImagePostViewController: ShiftableViewController {
     private let exposureFilter = CIFilter.exposureAdjust()
     private let sepiaFilter = CIFilter.sepiaTone()
     private let radialGradientFilter = CIFilter.radialGradient()
+    private let pixelFilter = CIFilter.pixellate()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -85,6 +87,7 @@ class ImagePostViewController: ShiftableViewController {
         tempImage = self.sepia(for: tempImage)
         tempImage = self.exposure(for: tempImage)
         tempImage = self.radialGradient(for: tempImage)
+        tempImage = self.pixel(for: tempImage)
         
         guard let renderedImage = context.createCGImage(tempImage, from: tempImage.extent) else { return UIImage(ciImage: inputImage) }
         
@@ -108,24 +111,36 @@ class ImagePostViewController: ShiftableViewController {
         exposureFilter.ev = self.exposureSlider.value
         return exposureFilter.outputImage ?? image
     }
-    
+
     private func radialGradient(for image: CIImage) -> CIImage {
-        
         if self.radialGradientSlider.value > 0.0 {
             let imageExtent = image.extent
-            let center = CIVector(x: imageExtent.width/2.0, y: imageExtent.height/2.0)
+            let center = CGPoint(x: imageExtent.width/2.0, y: imageExtent.height/2.0)
             let smallerDimension = min(imageExtent.width, imageExtent.height)
             let largerDimension = max(imageExtent.width, imageExtent.height)
+            
             // first filter
-            radialGradientFilter.setValue(center, forKey: "inputCenter")
-            radialGradientFilter.setValue(smallerDimension/2.0 * 0.2, forKey: "inputRadius0")
-            radialGradientFilter.setValue(largerDimension/2.0, forKey: "inputRadius1")
+            radialGradientFilter.center = center
+            radialGradientFilter.radius0 = Float(smallerDimension / 2.0) * (self.radialGradientSlider.value / 2)
+            radialGradientFilter.radius1 = Float(largerDimension / 2.0) / (self.radialGradientSlider.value / 2)
             let radialGradientImage = radialGradientFilter.outputImage!
+            
             // second filter
             return image.applyingFilter("CIBlendWithMask", parameters: ["inputMaskImage" : radialGradientImage])
         } else {
             return image
         }
+    }
+    
+    private func pixel(for image: CIImage) -> CIImage {
+        if self.pixelSlider.value > 0.0 {
+            pixelFilter.inputImage = image
+            pixelFilter.scale = self.pixelSlider.value * 12
+            return pixelFilter.outputImage ?? image
+        } else {
+            return image
+        }
+
     }
     
     private func updateImage() {
@@ -150,6 +165,9 @@ class ImagePostViewController: ShiftableViewController {
         self.updateImage()
     }
     
+    @IBAction func pixelPressed(_ sender: Any) {
+        self.updateImage()
+    }
     
     @IBAction func createPost(_ sender: Any) {
         
