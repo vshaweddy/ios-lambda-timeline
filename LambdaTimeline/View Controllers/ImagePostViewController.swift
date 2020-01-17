@@ -10,8 +10,9 @@ import UIKit
 import Photos
 import CoreImage.CIFilterBuiltins
 
-@available(iOS 13.0, *)
 class ImagePostViewController: ShiftableViewController {
+    
+    // MARK: - Outlets and Variables
     
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var titleTextField: UITextField!
@@ -97,6 +98,14 @@ class ImagePostViewController: ShiftableViewController {
         return UIImage(cgImage: renderedImage)
     }
     
+    private func updateImage() {
+        if let originalImage = originalImage, let image = CIImage(image: originalImage) {
+            imageView.image = self.image(byFiltering: image)
+        }
+    }
+    
+    // MARK: - Filters
+    
     private func vibrance(for image: CIImage) -> CIImage {
         vibranceFilter.inputImage = image
         vibranceFilter.amount = self.vibranceSlider.value
@@ -145,11 +154,7 @@ class ImagePostViewController: ShiftableViewController {
         }
     }
     
-    private func updateImage() {
-        if let originalImage = originalImage, let image = CIImage(image: originalImage) {
-            imageView.image = self.image(byFiltering: image)
-        }
-    }
+    // MARK: - Actions
     
     @IBAction func vibrancePressed(_ sender: Any) {
         self.updateImage()
