@@ -282,6 +282,7 @@
                     <connections>
                         <outlet property="chooseImageButton" destination="VxD-cu-jHT" id="KVs-no-MbU"/>
                         <outlet property="exposureSlider" destination="YLr-EW-yCY" id="yYl-fL-4nU"/>
+                        <outlet property="filtersStackView" destination="09J-3C-IZd" id="efY-sK-85K"/>
                         <outlet property="imageHeightConstraint" destination="MHD-wr-Gq9" id="HyG-8g-Ck1"/>
                         <outlet property="imageView" destination="4eK-5F-H5h" id="e7m-c5-Xhz"/>
                         <outlet property="pixelSlider" destination="9RS-I5-p5i" id="j80-o3-U66"/>

@@ -23,6 +23,7 @@ class ImagePostViewController: ShiftableViewController {
     @IBOutlet weak var sepiaSlider: UISlider!
     @IBOutlet weak var radialGradientSlider: UISlider!
     @IBOutlet weak var pixelSlider: UISlider!
+    @IBOutlet weak var filtersStackView: UIStackView!
     
     var postController: PostController!
     var post: Post?
@@ -43,6 +44,9 @@ class ImagePostViewController: ShiftableViewController {
         setImageViewHeight(with: 1.0)
         
         updateViews()
+        
+        // hide the filters 
+        self.filtersStackView.isHidden = true
     }
     
     func updateViews() {
@@ -82,7 +86,6 @@ class ImagePostViewController: ShiftableViewController {
         
         var tempImage: CIImage = inputImage
 
-        
         tempImage = self.vibrance(for: tempImage)
         tempImage = self.sepia(for: tempImage)
         tempImage = self.exposure(for: tempImage)
@@ -140,7 +143,6 @@ class ImagePostViewController: ShiftableViewController {
         } else {
             return image
         }
-
     }
     
     private func updateImage() {
@@ -244,6 +246,9 @@ extension ImagePostViewController: UIImagePickerControllerDelegate, UINavigation
         self.originalImage = image
         
         setImageViewHeight(with: image.ratio)
+        
+        // show all filters
+        self.filtersStackView.isHidden = false
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
