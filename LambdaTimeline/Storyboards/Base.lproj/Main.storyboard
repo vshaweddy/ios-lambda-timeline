@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xB5-Kl-GM2">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -295,7 +294,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XXa-A2-VJT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1951" y="-898"/>
+            <point key="canvasLocation" x="1969" y="-352"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="gdW-Je-ais">
@@ -447,11 +446,73 @@
                         <outlet property="imageView" destination="Q0L-w5-qUw" id="0v7-ZB-mgi"/>
                         <outlet property="imageViewAspectRatioConstraint" destination="y1B-iX-x3e" id="wIt-kh-Tzd"/>
                         <outlet property="titleLabel" destination="jyy-BX-c2c" id="UEd-xO-ipC"/>
+                        <segue destination="54e-ZM-kVK" kind="presentation" identifier="AudioSegue" id="mew-8O-Wmj"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CdL-Y3-4ej" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1968.8" y="472.71364317841085"/>
         </scene>
+        <!--Audio Comment View Controller-->
+        <scene sceneID="vDS-y5-9Va">
+            <objects>
+                <viewController id="vx9-cd-YVc" customClass="AudioCommentViewController" customModule="LambdaTimeline" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="bkg-a5-hGd">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Record your comment" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4qY-do-SfO">
+                                <rect key="frame" x="89" y="519" width="197" height="24"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H73-Jy-qOm">
+                                <rect key="frame" x="175" y="583" width="25" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" image="mic.circle.fill" catalog="system">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="gzh-Wy-Qm3" firstAttribute="bottom" secondItem="H73-Jy-qOm" secondAttribute="bottom" constant="40" id="4bF-uX-MUM"/>
+                            <constraint firstItem="H73-Jy-qOm" firstAttribute="centerX" secondItem="gzh-Wy-Qm3" secondAttribute="centerX" id="GDL-cG-XGh"/>
+                            <constraint firstItem="H73-Jy-qOm" firstAttribute="top" secondItem="4qY-do-SfO" secondAttribute="bottom" constant="40" id="hsu-aE-hcf"/>
+                            <constraint firstItem="4qY-do-SfO" firstAttribute="centerX" secondItem="bkg-a5-hGd" secondAttribute="centerX" id="wPI-RM-qds"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="gzh-Wy-Qm3"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="shz-cb-6GP">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="8ar-j1-2SU"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="7OM-c4-izg"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="C0k-fH-hed" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3676" y="472.71364317841085"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="v63-WW-7zH">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="54e-ZM-kVK" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="WGM-Lv-ali">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="vx9-cd-YVc" kind="relationship" relationship="rootViewController" id="J9e-gQ-amY"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="j1g-N7-fkH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2736.8000000000002" y="472.71364317841085"/>
+        </scene>
     </scenes>
+    <resources>
+        <image name="mic.circle.fill" catalog="system" width="64" height="60"/>
+    </resources>
 </document>
