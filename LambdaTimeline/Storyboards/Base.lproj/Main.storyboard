@@ -460,28 +460,7 @@
                     <view key="view" contentMode="scaleToFill" id="bkg-a5-hGd">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Record your comment" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4qY-do-SfO">
-                                <rect key="frame" x="89" y="519" width="197" height="24"/>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H73-Jy-qOm">
-                                <rect key="frame" x="175" y="583" width="25" height="24"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <state key="normal" image="mic.circle.fill" catalog="system">
-                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
-                                </state>
-                            </button>
-                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <constraints>
-                            <constraint firstItem="gzh-Wy-Qm3" firstAttribute="bottom" secondItem="H73-Jy-qOm" secondAttribute="bottom" constant="40" id="4bF-uX-MUM"/>
-                            <constraint firstItem="H73-Jy-qOm" firstAttribute="centerX" secondItem="gzh-Wy-Qm3" secondAttribute="centerX" id="GDL-cG-XGh"/>
-                            <constraint firstItem="H73-Jy-qOm" firstAttribute="top" secondItem="4qY-do-SfO" secondAttribute="bottom" constant="40" id="hsu-aE-hcf"/>
-                            <constraint firstItem="4qY-do-SfO" firstAttribute="centerX" secondItem="bkg-a5-hGd" secondAttribute="centerX" id="wPI-RM-qds"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="gzh-Wy-Qm3"/>
                     </view>
                     <navigationItem key="navigationItem" id="shz-cb-6GP">
@@ -512,7 +491,4 @@
             <point key="canvasLocation" x="2736.8000000000002" y="472.71364317841085"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="mic.circle.fill" catalog="system" width="64" height="60"/>
-    </resources>
 </document>

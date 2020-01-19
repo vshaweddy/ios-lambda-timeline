@@ -30,6 +30,10 @@
 		46D571F52173CF3E00E7FF73 /* UIImage+Ratio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D571F42173CF3E00E7FF73 /* UIImage+Ratio.swift */; };
 		46D571F82173FC2700E7FF73 /* ImagePostDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D571F72173FC2700E7FF73 /* ImagePostDetailTableViewController.swift */; };
 		E35AFD1B23D2A71600988FA2 /* AudioCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35AFD1A23D2A71600988FA2 /* AudioCommentViewController.swift */; };
+		E35AFD1D23D3F20800988FA2 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35AFD1C23D3F20800988FA2 /* Extensions.swift */; };
+		E35AFD2223D3F35600988FA2 /* RecordButtonKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35AFD2123D3F35600988FA2 /* RecordButtonKit.swift */; };
+		E35AFD2423D3F36B00988FA2 /* RecordButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35AFD2323D3F36B00988FA2 /* RecordButton.swift */; };
+		E35AFD2923D3F8CD00988FA2 /* AudioVisualizerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35AFD2823D3F8CD00988FA2 /* AudioVisualizerView.swift */; };
 		E3EF872E23CFFF3E00478D72 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E3EF872D23CFFF3E00478D72 /* GoogleService-Info.plist */; };
 		E453457955DF907FCBD117F1 /* Pods_LambdaTimeline.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA39CACB677861CF84322FB5 /* Pods_LambdaTimeline.framework */; };
 /* End PBXBuildFile section */
@@ -63,6 +67,11 @@
 		5D2CCD6C68779B0A70AC37FA /* Pods-LambdaTimeline.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LambdaTimeline.release.xcconfig"; path = "Pods/Target Support Files/Pods-LambdaTimeline/Pods-LambdaTimeline.release.xcconfig"; sourceTree = "<group>"; };
 		AA39CACB677861CF84322FB5 /* Pods_LambdaTimeline.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LambdaTimeline.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E35AFD1A23D2A71600988FA2 /* AudioCommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioCommentViewController.swift; sourceTree = "<group>"; };
+		E35AFD1C23D3F20800988FA2 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		E35AFD2123D3F35600988FA2 /* RecordButtonKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordButtonKit.swift; sourceTree = "<group>"; };
+		E35AFD2323D3F36B00988FA2 /* RecordButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordButton.swift; sourceTree = "<group>"; };
+		E35AFD2623D3F46A00988FA2 /* LambdaTimeline-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LambdaTimeline-Bridging-Header.h"; sourceTree = "<group>"; };
+		E35AFD2823D3F8CD00988FA2 /* AudioVisualizerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioVisualizerView.swift; sourceTree = "<group>"; };
 		E3EF872D23CFFF3E00478D72 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -108,6 +117,9 @@
 		4646377A216FDE4B00E7FF73 /* LambdaTimeline */ = {
 			isa = PBXGroup;
 			children = (
+				E35AFD2723D3F8B200988FA2 /* Custom Views */,
+				E35AFD2523D3F43400988FA2 /* Objective-C Bridge */,
+				E35AFD1E23D3F2FE00988FA2 /* Controllers */,
 				E3EF872D23CFFF3E00478D72 /* GoogleService-Info.plist */,
 				46CFE7042171572900E7FF73 /* Views */,
 				46A0366B21700F6100E7FF73 /* View Controllers */,
@@ -205,6 +217,7 @@
 				46CFE6F22170757F00E7FF73 /* User+DictionaryRepresentation.swift */,
 				46D571F42173CF3E00E7FF73 /* UIImage+Ratio.swift */,
 				46CFE6F621707FA600E7FF73 /* UIViewController+InformationalAlert.swift */,
+				E35AFD1C23D3F20800988FA2 /* Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -215,6 +228,47 @@
 				AA39CACB677861CF84322FB5 /* Pods_LambdaTimeline.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E35AFD1E23D3F2FE00988FA2 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				E35AFD1F23D3F31200988FA2 /* Recorder View */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		E35AFD1F23D3F31200988FA2 /* Recorder View */ = {
+			isa = PBXGroup;
+			children = (
+				E35AFD2023D3F33700988FA2 /* Recording Button */,
+			);
+			path = "Recorder View";
+			sourceTree = "<group>";
+		};
+		E35AFD2023D3F33700988FA2 /* Recording Button */ = {
+			isa = PBXGroup;
+			children = (
+				E35AFD2123D3F35600988FA2 /* RecordButtonKit.swift */,
+				E35AFD2323D3F36B00988FA2 /* RecordButton.swift */,
+			);
+			path = "Recording Button";
+			sourceTree = "<group>";
+		};
+		E35AFD2523D3F43400988FA2 /* Objective-C Bridge */ = {
+			isa = PBXGroup;
+			children = (
+				E35AFD2623D3F46A00988FA2 /* LambdaTimeline-Bridging-Header.h */,
+			);
+			path = "Objective-C Bridge";
+			sourceTree = "<group>";
+		};
+		E35AFD2723D3F8B200988FA2 /* Custom Views */ = {
+			isa = PBXGroup;
+			children = (
+				E35AFD2823D3F8CD00988FA2 /* AudioVisualizerView.swift */,
+			);
+			path = "Custom Views";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -352,6 +406,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				46A0366D2170158900E7FF73 /* SignInViewController.swift in Sources */,
+				E35AFD2223D3F35600988FA2 /* RecordButtonKit.swift in Sources */,
 				46CFE6FB21714E6100E7FF73 /* Author.swift in Sources */,
 				46CFE6F92170862C00E7FF73 /* ShiftableViewController.swift in Sources */,
 				4646377C216FDE4B00E7FF73 /* AppDelegate.swift in Sources */,
@@ -364,12 +419,15 @@
 				46D571F32172D43B00E7FF73 /* Cache.swift in Sources */,
 				46CFE7012171559500E7FF73 /* FetchMediaOperation.swift in Sources */,
 				46D571F82173FC2700E7FF73 /* ImagePostDetailTableViewController.swift in Sources */,
+				E35AFD1D23D3F20800988FA2 /* Extensions.swift in Sources */,
+				E35AFD2923D3F8CD00988FA2 /* AudioVisualizerView.swift in Sources */,
 				46CFE7032171572600E7FF73 /* ImagePostCollectionViewCell.swift in Sources */,
 				4646379C2170091A00E7FF73 /* PostController.swift in Sources */,
 				464637992170048900E7FF73 /* FirebaseConvertible.swift in Sources */,
 				46A0366A21700F5100E7FF73 /* PostsCollectionViewController.swift in Sources */,
 				46D571F52173CF3E00E7FF73 /* UIImage+Ratio.swift in Sources */,
 				46463792216FFDD900E7FF73 /* Comment.swift in Sources */,
+				E35AFD2423D3F36B00988FA2 /* RecordButton.swift in Sources */,
 				46CFE6F721707FA600E7FF73 /* UIViewController+InformationalAlert.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -527,6 +585,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.vicishaweddy.timeline;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "LambdaTimeline/Objective-C Bridge/LambdaTimeline-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -547,6 +606,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.vicishaweddy.timeline;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "LambdaTimeline/Objective-C Bridge/LambdaTimeline-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
