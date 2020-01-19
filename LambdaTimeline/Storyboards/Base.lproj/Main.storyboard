@@ -404,28 +404,34 @@
                             </constraints>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CommentCell" textLabel="a1p-af-m2r" detailTextLabel="KxJ-Oh-Ju8" style="IBUITableViewCellStyleSubtitle" id="gWx-Ba-4ra">
-                                <rect key="frame" x="0.0" y="133" width="375" height="55.5"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CommentCell" id="gWx-Ba-4ra">
+                                <rect key="frame" x="0.0" y="133" width="375" height="45"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gWx-Ba-4ra" id="wtQ-2t-2R8">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="55.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="45"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="a1p-af-m2r">
-                                            <rect key="frame" x="16" y="10" width="33.5" height="20.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qgp-E9-Cyd">
+                                            <rect key="frame" x="16" y="12" width="42" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="KxJ-Oh-Ju8">
-                                            <rect key="frame" x="16" y="31.5" width="44" height="14.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rw3-QS-kBV" userLabel="Play Button">
+                                            <rect key="frame" x="339" y="10" width="20" height="25"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                            <state key="normal" image="play.circle.fill" catalog="system"/>
+                                        </button>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="qgp-E9-Cyd" firstAttribute="leading" secondItem="wtQ-2t-2R8" secondAttribute="leading" constant="16" id="FKN-Ld-wra"/>
+                                        <constraint firstAttribute="bottom" secondItem="qgp-E9-Cyd" secondAttribute="bottom" constant="12" id="GpN-sp-4ou"/>
+                                        <constraint firstAttribute="bottom" secondItem="rw3-QS-kBV" secondAttribute="bottom" constant="10" id="Mck-bL-4SX"/>
+                                        <constraint firstItem="rw3-QS-kBV" firstAttribute="top" secondItem="wtQ-2t-2R8" secondAttribute="top" constant="10" id="clV-jX-wCC"/>
+                                        <constraint firstAttribute="trailing" secondItem="rw3-QS-kBV" secondAttribute="trailing" constant="16" id="ee2-KE-L7c"/>
+                                        <constraint firstItem="rw3-QS-kBV" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="qgp-E9-Cyd" secondAttribute="trailing" constant="8" symbolic="YES" id="rfk-pz-goh"/>
+                                        <constraint firstItem="qgp-E9-Cyd" firstAttribute="top" secondItem="wtQ-2t-2R8" secondAttribute="top" constant="12" id="yJu-Zg-AHj"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
@@ -514,5 +520,6 @@
     </scenes>
     <resources>
         <image name="mic.circle.fill" catalog="system" width="64" height="60"/>
+        <image name="play.circle.fill" catalog="system" width="64" height="60"/>
     </resources>
 </document>
