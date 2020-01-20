@@ -8,11 +8,17 @@
 
 import UIKit
 
+protocol CommentTableViewCellDelegate: AnyObject {
+    func didPressPlayButton(tag: Int)
+}
+
 class CommentTableViewCell: UITableViewCell {
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var authorLabel: UILabel!
+    
+    weak var delegate: CommentTableViewCellDelegate?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -26,6 +32,8 @@ class CommentTableViewCell: UITableViewCell {
     }
     
     @IBAction func playPressed(_ sender: Any) {
+        self.delegate?.didPressPlayButton(tag: self.tag)
     }
     
 }
+

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class ImagePostDetailTableViewController: UITableViewController {
     
@@ -20,6 +21,19 @@ class ImagePostDetailTableViewController: UITableViewController {
     var post: Post!
     var postController: PostController!
     var imageData: Data?
+    var player: AVPlayer?
+    var audioPlayer: AVAudioPlayer? {
+        didSet {
+            guard let audioPlayer = audioPlayer else { return }
+            
+            audioPlayer.delegate = self
+            audioPlayer.isMeteringEnabled = true
+            self.updateViews()
+        }
+    }
+    
+    private let audioCache = Cache<String, Data>()
+    private let audioFetchQueue = OperationQueue()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,6 +84,22 @@ class ImagePostDetailTableViewController: UITableViewController {
         present(alert, animated: true, completion: nil)
     }
     
+    //MARK: - Playback
+    var isPlaying: Bool {
+        audioPlayer?.isPlaying ?? false
+    }
+    
+    func play() {
+        audioPlayer?.play()
+    }
+    
+    func pause() {
+        audioPlayer?.pause()
+    }
+    
+    
+    // MARK: - Actions
+    
     @IBAction func createComment(_ sender: Any) {
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
@@ -99,9 +129,11 @@ class ImagePostDetailTableViewController: UITableViewController {
         
         let comment = post?.comments[indexPath.row + 1]
         
-        cell.titleLabel.text = comment?.text?.isEmpty == true ? "Audio" : comment?.text 
+        cell.titleLabel.text = comment?.text != nil && comment?.text?.isEmpty == false ? comment?.text : "Audio"
         cell.authorLabel.text = comment?.author.displayName
-        cell.playButton.isHidden = comment?.text?.isEmpty == false 
+        cell.playButton.isHidden = comment?.text?.isEmpty == false
+        cell.tag = indexPath.row
+        cell.delegate = self
         
         return cell
     }
@@ -111,7 +143,65 @@ class ImagePostDetailTableViewController: UITableViewController {
             if let nc = segue.destination as? UINavigationController,
                 let audioVC = nc.topViewController as? AudioCommentViewController {
                 audioVC.post = self.post
+                audioVC.delegate = self
             }
         }
     }
 }
+
+extension ImagePostDetailTableViewController: CommentTableViewCellDelegate {
+    func didPressPlayButton(tag: Int) {
+        let comment = post.comments[tag + 1]
+        guard let audio = comment.audio else { return }
+        print(audio)
+        
+        if let audioData = audioCache.value(for: String(tag)) {
+            self.audioPlayer = try! AVAudioPlayer(data: audioData, fileTypeHint: "caf")
+            self.audioPlayer?.play()
+            return
+        }
+        
+        let fetchOp = FetchMediaOperation(url: audio)
+        
+        let cacheOp = BlockOperation {
+            if let data = fetchOp.mediaData {
+                self.audioCache.cache(value: data, for: String(tag))
+            }
+        }
+        
+        let completionOp = BlockOperation {
+            if let audioData = fetchOp.mediaData {
+                self.audioPlayer = try! AVAudioPlayer(data: audioData, fileTypeHint: "caf")
+                self.audioPlayer?.play()
+            }
+        }
+        
+        cacheOp.addDependency(fetchOp)
+        completionOp.addDependency(fetchOp)
+        
+        audioFetchQueue.addOperation(fetchOp)
+        audioFetchQueue.addOperation(cacheOp)
+        OperationQueue.main.addOperation(completionOp)
+    }
+}
+
+extension ImagePostDetailTableViewController: AVAudioPlayerDelegate {
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        updateViews()
+    }
+    
+    func audioPlayerDecodeErrorDidOccur(_ player: AVAudioPlayer, error: Error?) {
+        if let error = error {
+            print("Audio Player Error: \(error)")
+        }
+    }
+}
+
+extension ImagePostDetailTableViewController: AudioCommentViewControllerDelegate {
+    func didSave() {
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+}
+
