@@ -415,6 +415,7 @@
                                             <rect key="frame" x="339" y="10" width="20" height="44.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                             <state key="normal" image="play.circle.fill" catalog="system"/>
+                                            <state key="selected" image="pause.circle.fill" catalog="system"/>
                                             <connections>
                                                 <action selector="playPressed:" destination="gWx-Ba-4ra" eventType="touchUpInside" id="5Ie-Pr-zH4"/>
                                             </connections>
@@ -555,6 +556,7 @@
     </scenes>
     <resources>
         <image name="mic.circle.fill" catalog="system" width="64" height="60"/>
+        <image name="pause.circle.fill" catalog="system" width="64" height="60"/>
         <image name="play.circle.fill" catalog="system" width="64" height="60"/>
     </resources>
 </document>
