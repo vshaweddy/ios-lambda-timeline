@@ -42,15 +42,28 @@ class PostController {
         }
     }
     
-    func addComment(with media: Media, to post: inout Post) {
-        
+    func addComment(with media: Media, to post: Post) {
         guard let currentUser = Auth.auth().currentUser,
             let author = Author(user: currentUser) else { return }
         
-        let comment = Comment(media: media, author: author)
-        post.comments.append(comment)
-        
-        savePostToFirebase(post)
+        if case .audio(let audio) = media {
+            do {
+                let data = try Data(contentsOf: audio)
+                store(mediaData: data, mediaType: .audio) { (url) in
+                    guard let url = url else { return }
+                    
+                    let comment = Comment(media: .audio(url), author: author)
+                    post.comments.append(comment)
+                    self.savePostToFirebase(post)
+                }
+            } catch {
+                print("Error getting audio data: \(error)")
+            }
+        } else {
+            let comment = Comment(media: media, author: author)
+            post.comments.append(comment)
+            self.savePostToFirebase(post)
+        }
     }
 
     func observePosts(completion: @escaping (Error?) -> Void) {

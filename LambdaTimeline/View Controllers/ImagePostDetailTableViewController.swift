@@ -55,7 +55,7 @@ class ImagePostDetailTableViewController: UITableViewController {
             
             guard let commentText = commentTextField?.text else { return }
             
-            self.postController.addComment(with: .text(commentText), to: &self.post!)
+            self.postController.addComment(with: .text(commentText), to: self.post!)
             
             DispatchQueue.main.async {
                 self.tableView.reloadData()
@@ -68,10 +68,6 @@ class ImagePostDetailTableViewController: UITableViewController {
         alert.addAction(cancelAction)
         
         present(alert, animated: true, completion: nil)
-    }
-    
-    func createAudioComment() {
-
     }
     
     @IBAction func createComment(_ sender: Any) {
@@ -99,13 +95,23 @@ class ImagePostDetailTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CommentCell", for: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "CommentCell", for: indexPath) as? CommentTableViewCell else { return UITableViewCell() }
         
         let comment = post?.comments[indexPath.row + 1]
         
-        cell.textLabel?.text = comment?.text
-        cell.detailTextLabel?.text = comment?.author.displayName
+        cell.titleLabel.text = comment?.text?.isEmpty == true ? "Audio" : comment?.text 
+        cell.authorLabel.text = comment?.author.displayName
+        cell.playButton.isHidden = comment?.text?.isEmpty == false 
         
         return cell
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "AudioSegue" {
+            if let nc = segue.destination as? UINavigationController,
+                let audioVC = nc.topViewController as? AudioCommentViewController {
+                audioVC.post = self.post
+            }
+        }
     }
 }

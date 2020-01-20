@@ -46,15 +46,18 @@ class Comment: FirebaseConvertible, Equatable {
             let author = Author(dictionary: authorDictionary),
             let timestampTimeInterval = dictionary[Comment.timestampKey] as? TimeInterval else { return nil }
         
+        let audioString = dictionary[Comment.audioKey] as? String
+        let audioURL = audioString.map{ URL(string: $0) }
+        
         self.text = dictionary[Comment.textKey] as? String
-        self.audio = dictionary[Comment.audioKey] as? URL
+        self.audio = audioURL ?? nil
         self.author = author
         self.timestamp = Date(timeIntervalSince1970: timestampTimeInterval)
     }
     
     var dictionaryRepresentation: [String: Any] {
         return [Comment.textKey: text ?? "",
-                Comment.audioKey: audio ?? "",
+                Comment.audioKey: audio?.absoluteString ?? "",
                 Comment.authorKey: author.dictionaryRepresentation,
                 Comment.timestampKey: timestamp.timeIntervalSince1970]
     }

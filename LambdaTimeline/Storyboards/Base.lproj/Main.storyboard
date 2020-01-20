@@ -405,34 +405,58 @@
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CommentCell" id="gWx-Ba-4ra" customClass="CommentTableViewCell" customModule="LambdaTimeline" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="133" width="375" height="45"/>
+                                <rect key="frame" x="0.0" y="133" width="375" height="64.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gWx-Ba-4ra" id="wtQ-2t-2R8">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="45"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="64.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qgp-E9-Cyd">
-                                            <rect key="frame" x="16" y="12" width="42" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rw3-QS-kBV" userLabel="Play Button">
-                                            <rect key="frame" x="339" y="10" width="20" height="25"/>
+                                            <rect key="frame" x="339" y="10" width="20" height="44.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                             <state key="normal" image="play.circle.fill" catalog="system"/>
+                                            <connections>
+                                                <action selector="playPressed:" destination="gWx-Ba-4ra" eventType="touchUpInside" id="5Ie-Pr-zH4"/>
+                                            </connections>
                                         </button>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="tgy-Hj-FSV">
+                                            <rect key="frame" x="16" y="8" width="42" height="48.5"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qgp-E9-Cyd">
+                                                    <rect key="frame" x="0.0" y="0.0" width="42" height="22"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="22" id="kU4-U0-jYW"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iZs-v4-N9Z" userLabel="Author Label">
+                                                    <rect key="frame" x="0.0" y="26" width="42" height="22.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="22" id="poT-VE-4Hm"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </stackView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="qgp-E9-Cyd" firstAttribute="leading" secondItem="wtQ-2t-2R8" secondAttribute="leading" constant="16" id="FKN-Ld-wra"/>
-                                        <constraint firstAttribute="bottom" secondItem="qgp-E9-Cyd" secondAttribute="bottom" constant="12" id="GpN-sp-4ou"/>
+                                        <constraint firstItem="tgy-Hj-FSV" firstAttribute="leading" secondItem="wtQ-2t-2R8" secondAttribute="leading" constant="16" id="Dqc-TX-BuV"/>
                                         <constraint firstAttribute="bottom" secondItem="rw3-QS-kBV" secondAttribute="bottom" constant="10" id="Mck-bL-4SX"/>
                                         <constraint firstItem="rw3-QS-kBV" firstAttribute="top" secondItem="wtQ-2t-2R8" secondAttribute="top" constant="10" id="clV-jX-wCC"/>
                                         <constraint firstAttribute="trailing" secondItem="rw3-QS-kBV" secondAttribute="trailing" constant="16" id="ee2-KE-L7c"/>
-                                        <constraint firstItem="rw3-QS-kBV" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="qgp-E9-Cyd" secondAttribute="trailing" constant="8" symbolic="YES" id="rfk-pz-goh"/>
-                                        <constraint firstItem="qgp-E9-Cyd" firstAttribute="top" secondItem="wtQ-2t-2R8" secondAttribute="top" constant="12" id="yJu-Zg-AHj"/>
+                                        <constraint firstItem="tgy-Hj-FSV" firstAttribute="top" secondItem="wtQ-2t-2R8" secondAttribute="top" constant="8" id="hMn-f7-W4r"/>
+                                        <constraint firstAttribute="bottom" secondItem="tgy-Hj-FSV" secondAttribute="bottom" constant="8" id="pBF-th-8Gc"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="authorLabel" destination="iZs-v4-N9Z" id="MuJ-cq-0RJ"/>
+                                    <outlet property="playButton" destination="rw3-QS-kBV" id="FSd-V2-EOy"/>
+                                    <outlet property="titleLabel" destination="qgp-E9-Cyd" id="beM-YM-AGh"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -479,6 +503,9 @@
                                 <state key="normal" image="mic.circle.fill" catalog="system">
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
                                 </state>
+                                <connections>
+                                    <action selector="recordPressed:" destination="vx9-cd-YVc" eventType="touchUpInside" id="vzU-7C-tuP"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -491,8 +518,16 @@
                         <viewLayoutGuide key="safeArea" id="gzh-Wy-Qm3"/>
                     </view>
                     <navigationItem key="navigationItem" id="shz-cb-6GP">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="8ar-j1-2SU"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="7OM-c4-izg"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="8ar-j1-2SU">
+                            <connections>
+                                <action selector="cancelPressed:" destination="vx9-cd-YVc" id="55R-qH-c07"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="7OM-c4-izg">
+                            <connections>
+                                <action selector="savePressed:" destination="vx9-cd-YVc" id="xQf-bB-ibJ"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C0k-fH-hed" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

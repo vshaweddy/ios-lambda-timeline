@@ -9,6 +9,10 @@
 import UIKit
 
 class CommentTableViewCell: UITableViewCell {
+    
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var playButton: UIButton!
+    @IBOutlet weak var authorLabel: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -20,5 +24,8 @@ class CommentTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
+    
+    @IBAction func playPressed(_ sender: Any) {
+    }
+    
 }
