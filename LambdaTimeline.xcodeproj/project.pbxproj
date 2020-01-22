@@ -34,6 +34,7 @@
 		E35AFD2D23D52DB700988FA2 /* RecordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35AFD2C23D52DB700988FA2 /* RecordController.swift */; };
 		E3EF872E23CFFF3E00478D72 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E3EF872D23CFFF3E00478D72 /* GoogleService-Info.plist */; };
 		E3F5228B23D805F9005EF0D6 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F5228A23D805F9005EF0D6 /* CameraViewController.swift */; };
+		E3F5228D23D88C00005EF0D6 /* CameraPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F5228C23D88C00005EF0D6 /* CameraPreviewView.swift */; };
 		E453457955DF907FCBD117F1 /* Pods_LambdaTimeline.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA39CACB677861CF84322FB5 /* Pods_LambdaTimeline.framework */; };
 /* End PBXBuildFile section */
 
@@ -70,6 +71,7 @@
 		E35AFD2C23D52DB700988FA2 /* RecordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordController.swift; sourceTree = "<group>"; };
 		E3EF872D23CFFF3E00478D72 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E3F5228A23D805F9005EF0D6 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
+		E3F5228C23D88C00005EF0D6 /* CameraPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreviewView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,6 +184,7 @@
 			children = (
 				46CFE7022171572600E7FF73 /* ImagePostCollectionViewCell.swift */,
 				E35AFD2A23D4BD9300988FA2 /* CommentTableViewCell.swift */,
+				E3F5228C23D88C00005EF0D6 /* CameraPreviewView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -368,6 +371,7 @@
 				E35AFD2B23D4BD9300988FA2 /* CommentTableViewCell.swift in Sources */,
 				46CFE6FD217154F500E7FF73 /* Networking.swift in Sources */,
 				46CFE6F521707D0000E7FF73 /* ImagePostViewController.swift in Sources */,
+				E3F5228D23D88C00005EF0D6 /* CameraPreviewView.swift in Sources */,
 				E35AFD1B23D2A71600988FA2 /* AudioCommentViewController.swift in Sources */,
 				46CFE6FF2171556D00E7FF73 /* ConcurrentOperation.swift in Sources */,
 				46463790216FFD1B00E7FF73 /* Post.swift in Sources */,
