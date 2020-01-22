@@ -33,6 +33,7 @@
 		E35AFD2B23D4BD9300988FA2 /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35AFD2A23D4BD9300988FA2 /* CommentTableViewCell.swift */; };
 		E35AFD2D23D52DB700988FA2 /* RecordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35AFD2C23D52DB700988FA2 /* RecordController.swift */; };
 		E3EF872E23CFFF3E00478D72 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E3EF872D23CFFF3E00478D72 /* GoogleService-Info.plist */; };
+		E3F5228B23D805F9005EF0D6 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F5228A23D805F9005EF0D6 /* CameraViewController.swift */; };
 		E453457955DF907FCBD117F1 /* Pods_LambdaTimeline.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA39CACB677861CF84322FB5 /* Pods_LambdaTimeline.framework */; };
 /* End PBXBuildFile section */
 
@@ -68,6 +69,7 @@
 		E35AFD2A23D4BD9300988FA2 /* CommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
 		E35AFD2C23D52DB700988FA2 /* RecordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordController.swift; sourceTree = "<group>"; };
 		E3EF872D23CFFF3E00478D72 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		E3F5228A23D805F9005EF0D6 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,6 +172,7 @@
 				46CFE6F421707D0000E7FF73 /* ImagePostViewController.swift */,
 				46D571F72173FC2700E7FF73 /* ImagePostDetailTableViewController.swift */,
 				E35AFD1A23D2A71600988FA2 /* AudioCommentViewController.swift */,
+				E3F5228A23D805F9005EF0D6 /* CameraViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -360,6 +363,7 @@
 				46A0366D2170158900E7FF73 /* SignInViewController.swift in Sources */,
 				46CFE6FB21714E6100E7FF73 /* Author.swift in Sources */,
 				46CFE6F92170862C00E7FF73 /* ShiftableViewController.swift in Sources */,
+				E3F5228B23D805F9005EF0D6 /* CameraViewController.swift in Sources */,
 				4646377C216FDE4B00E7FF73 /* AppDelegate.swift in Sources */,
 				E35AFD2B23D4BD9300988FA2 /* CommentTableViewCell.swift in Sources */,
 				46CFE6FD217154F500E7FF73 /* Networking.swift in Sources */,
