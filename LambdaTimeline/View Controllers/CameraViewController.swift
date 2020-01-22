@@ -17,6 +17,7 @@ class CameraViewController: UIViewController {
     lazy private var captureSession = AVCaptureSession()
     lazy private var fileOutput = AVCaptureMovieFileOutput()
     var player: AVPlayer!
+    var videoURL: URL?
 //    var playerView: PlaybackView!
     
     override var prefersStatusBarHidden: Bool {
@@ -28,6 +29,11 @@ class CameraViewController: UIViewController {
         self.setUpCamera()
 
         // Do any additional setup after loading the view.
+    }
+    
+    private func updateViews() {
+        // for changing the record button UI
+        self.recordButton.isSelected = fileOutput.isRecording
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -96,11 +102,37 @@ class CameraViewController: UIViewController {
         fatalError("No audio")
     }
     
+    private func toggleRecord() {
+        if self.fileOutput.isRecording {
+            // stop recording
+            self.fileOutput.stopRecording()
+        } else {
+            // start recording
+            self.fileOutput.startRecording(to: newRecordingURL(), recordingDelegate: self)
+        }
+    }
+    
+    // Creates a new file URL to Firebase
+    
+    private func newRecordingURL() -> URL {
+        let documentsdirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        
+        let formatter = ISO8601DateFormatter()
+        formatter.formatOptions = [.withInternetDateTime]
+        
+        let name = formatter.string(from: Date())
+        let fileURL = documentsdirectory.appendingPathComponent(name).appendingPathExtension("mov")
+        self.videoURL = fileURL
+        return fileURL
+    }
+    
+    
     @IBAction func cancelPressed(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func recordPressed(_ sender: Any) {
+        self.toggleRecord()
     }
     
     /*
@@ -112,5 +144,20 @@ class CameraViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
 }
+
+extension CameraViewController: AVCaptureFileOutputRecordingDelegate {
+    func fileOutput(_ output: AVCaptureFileOutput, didFinishRecordingTo outputFileURL: URL, from connections: [AVCaptureConnection], error: Error?) {
+        if let error = error {
+            print("Error saving video: \(error)")
+        }
+        print("Did finish recording: \(String(describing: videoURL))")
+        updateViews()
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func fileOutput(_ output: AVCaptureFileOutput, didStartRecordingTo fileURL: URL, from connections: [AVCaptureConnection]) {
+        updateViews()
+    }
+}
+
