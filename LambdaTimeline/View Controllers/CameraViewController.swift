@@ -7,13 +7,30 @@
 //
 
 import UIKit
+import AVFoundation
 
 class CameraViewController: UIViewController {
+    
+    @IBOutlet weak var recordButton: UIButton!
+    @IBOutlet weak var cameraView: UIView!
+    
+    lazy private var captureSession = AVCaptureSession()
+    lazy private var fileOutput = AVCaptureMovieFileOutput()
+    var player: AVPlayer!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
 
         // Do any additional setup after loading the view.
+    }
+    
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+    
+    @IBAction func cancelPressed(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
     }
     
 
