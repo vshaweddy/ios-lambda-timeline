@@ -19,7 +19,7 @@ class CameraViewController: UIViewController {
     var player: AVPlayer!
     var videoURL: URL?
     var postController = PostController()
-//    var playerView: PlaybackView!
+    var playerView: PlaybackView!
     
     override var prefersStatusBarHidden: Bool {
         return true
@@ -128,15 +128,6 @@ class CameraViewController: UIViewController {
         return fileURL
     }
     
-    
-    @IBAction func cancelPressed(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
-    }
-    
-    @IBAction func recordPressed(_ sender: Any) {
-        self.toggleRecord()
-    }
-    
     func createVideoPost() {
 
         let alert = UIAlertController(title: "Add a title", message: nil, preferredStyle: .alert)
@@ -172,8 +163,44 @@ class CameraViewController: UIViewController {
         alert.addAction(cancelAction)
 
         self.present(alert, animated: true, completion: nil)
-       
     }
+    
+    func playMovie(url: URL) {
+        if playerView == nil {
+            playerView = PlaybackView()
+            
+            let topRect = self.view.bounds
+            playerView.frame = topRect
+            view.addSubview(playerView)
+            
+            playerView.playerLayer.videoGravity = .resizeAspectFill
+            
+            player?.pause()
+            player = AVPlayer(url: url) // player item
+            playerView.playerLayer.player = player // player layer
+            
+            player.play()
+            loopVideo(videoPlayer: player)
+        }
+    }
+    
+    func loopVideo(videoPlayer: AVPlayer) {
+        NotificationCenter.default.addObserver(forName: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: nil, queue: nil) { notification in
+            videoPlayer.seek(to: CMTime.zero)
+            videoPlayer.play()
+        }
+    }
+    
+    // MARK: - Actions
+    
+    @IBAction func cancelPressed(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func recordPressed(_ sender: Any) {
+        self.toggleRecord()
+    }
+    
 }
 
 extension CameraViewController: AVCaptureFileOutputRecordingDelegate {
@@ -182,6 +209,9 @@ extension CameraViewController: AVCaptureFileOutputRecordingDelegate {
             print("Error saving video: \(error)")
         }
         print("Did finish recording: \(String(describing: videoURL))")
+    
+        guard let videoURL = self.videoURL else { return }
+        self.playMovie(url: videoURL)
         
         self.createVideoPost()
         updateViews()

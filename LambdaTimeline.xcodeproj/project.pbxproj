@@ -32,6 +32,7 @@
 		E35AFD1B23D2A71600988FA2 /* AudioCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35AFD1A23D2A71600988FA2 /* AudioCommentViewController.swift */; };
 		E35AFD2B23D4BD9300988FA2 /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35AFD2A23D4BD9300988FA2 /* CommentTableViewCell.swift */; };
 		E35AFD2D23D52DB700988FA2 /* RecordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35AFD2C23D52DB700988FA2 /* RecordController.swift */; };
+		E3D05B3D23DA3CFF00F3CE10 /* PlaybackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D05B3C23DA3CFF00F3CE10 /* PlaybackView.swift */; };
 		E3EF872E23CFFF3E00478D72 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E3EF872D23CFFF3E00478D72 /* GoogleService-Info.plist */; };
 		E3F5228B23D805F9005EF0D6 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F5228A23D805F9005EF0D6 /* CameraViewController.swift */; };
 		E3F5228D23D88C00005EF0D6 /* CameraPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F5228C23D88C00005EF0D6 /* CameraPreviewView.swift */; };
@@ -69,6 +70,7 @@
 		E35AFD1A23D2A71600988FA2 /* AudioCommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioCommentViewController.swift; sourceTree = "<group>"; };
 		E35AFD2A23D4BD9300988FA2 /* CommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
 		E35AFD2C23D52DB700988FA2 /* RecordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordController.swift; sourceTree = "<group>"; };
+		E3D05B3C23DA3CFF00F3CE10 /* PlaybackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaybackView.swift; sourceTree = "<group>"; };
 		E3EF872D23CFFF3E00478D72 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E3F5228A23D805F9005EF0D6 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		E3F5228C23D88C00005EF0D6 /* CameraPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreviewView.swift; sourceTree = "<group>"; };
@@ -185,6 +187,7 @@
 				46CFE7022171572600E7FF73 /* ImagePostCollectionViewCell.swift */,
 				E35AFD2A23D4BD9300988FA2 /* CommentTableViewCell.swift */,
 				E3F5228C23D88C00005EF0D6 /* CameraPreviewView.swift */,
+				E3D05B3C23DA3CFF00F3CE10 /* PlaybackView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -381,6 +384,7 @@
 				46D571F82173FC2700E7FF73 /* ImagePostDetailTableViewController.swift in Sources */,
 				46CFE7032171572600E7FF73 /* ImagePostCollectionViewCell.swift in Sources */,
 				4646379C2170091A00E7FF73 /* PostController.swift in Sources */,
+				E3D05B3D23DA3CFF00F3CE10 /* PlaybackView.swift in Sources */,
 				464637992170048900E7FF73 /* FirebaseConvertible.swift in Sources */,
 				46A0366A21700F5100E7FF73 /* PostsCollectionViewController.swift in Sources */,
 				E35AFD2D23D52DB700988FA2 /* RecordController.swift in Sources */,
