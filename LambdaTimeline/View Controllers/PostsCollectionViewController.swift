@@ -59,13 +59,17 @@ class PostsCollectionViewController: UICollectionViewController, UICollectionVie
         let post = postController.posts[indexPath.row]
         
         switch post.mediaType {
-        case .image, .audio, .video:
+        case .image, .audio:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImagePostCell", for: indexPath) as? ImagePostCollectionViewCell else { return UICollectionViewCell() }
             
             cell.post = post
             
             loadImage(for: cell, forItemAt: indexPath)
             
+            return cell
+        case .video:
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImagePostCell", for: indexPath) as? ImagePostCollectionViewCell else { return UICollectionViewCell() }
+            cell.post = post
             return cell
         }
     }

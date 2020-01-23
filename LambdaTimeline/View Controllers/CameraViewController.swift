@@ -18,6 +18,7 @@ class CameraViewController: UIViewController {
     lazy private var fileOutput = AVCaptureMovieFileOutput()
     var player: AVPlayer!
     var videoURL: URL?
+    var postController = PostController()
 //    var playerView: PlaybackView!
     
     override var prefersStatusBarHidden: Bool {
@@ -135,15 +136,43 @@ class CameraViewController: UIViewController {
         self.toggleRecord()
     }
     
-    /*
-    // MARK: - Navigation
+    func createVideoPost() {
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        let alert = UIAlertController(title: "Add a title", message: nil, preferredStyle: .alert)
+        
+        var titleTextField: UITextField?
+        
+        alert.addTextField { (textField) in
+            textField.placeholder = "Video Title"
+            titleTextField = textField
+        }
+        
+        let addCommentAction = UIAlertAction(title: "Add Title", style: .default) { (_) in
+            
+            guard let titleText = titleTextField?.text,
+                let videoURL = self.videoURL else { return }
+            
+            do {
+                let videoData = try Data(contentsOf: videoURL)
+                
+                self.postController.createPost(with: titleText, ofType: .video, mediaData: videoData)
+                
+                DispatchQueue.main.async {
+                    self.dismiss(animated: true, completion: nil)
+                }
+            } catch {
+                fatalError("Can't create a video post")
+            }
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        alert.addAction(addCommentAction)
+        alert.addAction(cancelAction)
+
+        self.present(alert, animated: true, completion: nil)
+       
     }
-    */
 }
 
 extension CameraViewController: AVCaptureFileOutputRecordingDelegate {
@@ -152,8 +181,9 @@ extension CameraViewController: AVCaptureFileOutputRecordingDelegate {
             print("Error saving video: \(error)")
         }
         print("Did finish recording: \(String(describing: videoURL))")
+        
+        self.createVideoPost()
         updateViews()
-        dismiss(animated: true, completion: nil)
     }
     
     func fileOutput(_ output: AVCaptureFileOutput, didStartRecordingTo fileURL: URL, from connections: [AVCaptureConnection]) {
