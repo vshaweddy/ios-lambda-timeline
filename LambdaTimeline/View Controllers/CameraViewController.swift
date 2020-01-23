@@ -29,7 +29,8 @@ class CameraViewController: UIViewController {
         super.viewDidLoad()
         self.setUpCamera()
 
-        // Do any additional setup after loading the view.
+        // Resize camera preview to fill the entire screen
+        cameraView.videoPlayerView.videoGravity = .resizeAspectFill
     }
     
     private func updateViews() {
