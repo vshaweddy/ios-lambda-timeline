@@ -157,7 +157,9 @@ class CameraViewController: UIViewController {
             }
         }
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in
+            self.dismiss(animated: true, completion: nil)
+        }
         
         alert.addAction(addCommentAction)
         alert.addAction(cancelAction)

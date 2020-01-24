@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 import FirebaseAuth
 import FirebaseUI
 
@@ -17,6 +18,7 @@ class PostsCollectionViewController: UICollectionViewController, UICollectionVie
     private var operations = [String : Operation]()
     private let mediaFetchQueue = OperationQueue()
     private let cache = Cache<String, Data>()
+    private let cacheVideoThumbnail = Cache<String, UIImage>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,7 +71,11 @@ class PostsCollectionViewController: UICollectionViewController, UICollectionVie
             return cell
         case .video:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImagePostCell", for: indexPath) as? ImagePostCollectionViewCell else { return UICollectionViewCell() }
+            
             cell.post = post
+            
+            loadVideo(for: cell, forItemAt: indexPath)
+            
             return cell
         }
     }
@@ -154,6 +160,49 @@ class PostsCollectionViewController: UICollectionViewController, UICollectionVie
         OperationQueue.main.addOperation(completionOp)
         
         operations[postID] = fetchOp
+    }
+    
+    func loadVideo(for imagePostCell: ImagePostCollectionViewCell, forItemAt indexPath: IndexPath) {
+        let post = postController.posts[indexPath.row]
+        
+        guard let postID = post.id else { return }
+        
+        if let mediaThumbnail = cacheVideoThumbnail.value(for: postID) {
+            imagePostCell.setImage(mediaThumbnail)
+            self.collectionView.reloadItems(at: [indexPath])
+            return
+        }
+        
+        let fetchOp = FetchMediaOperation(url: post.mediaURL)
+        
+        let completionOp = BlockOperation {
+            if let data = fetchOp.mediaData {
+                let directory = NSTemporaryDirectory()
+                let fileName = "\(NSUUID().uuidString).mov"
+                guard let fullURL = NSURL.fileURL(withPathComponents: [directory, fileName]) else {
+                    return
+                }
+                    
+                do {
+                    try data.write(to: fullURL)
+                    let asset = AVAsset(url: fullURL)
+                    let imgGenerator = AVAssetImageGenerator(asset: asset)
+                    let cgImage = try imgGenerator.copyCGImage(at: CMTimeMake(value: 0, timescale: 1), actualTime: nil)
+                    let thumbnail = UIImage(cgImage: cgImage)
+                    
+                    self.cacheVideoThumbnail.cache(value: thumbnail, for: postID)
+                    
+                    imagePostCell.setImage(thumbnail)
+                } catch let error {
+                    print("Error generating thumbnail: \(error.localizedDescription)")
+                }
+            }
+        }
+        
+        completionOp.addDependency(fetchOp)
+        
+        mediaFetchQueue.addOperation(fetchOp)
+        OperationQueue.main.addOperation(completionOp)
     }
     // MARK: - Navigation
     
