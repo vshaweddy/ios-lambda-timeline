@@ -19,6 +19,7 @@ class PostsCollectionViewController: UICollectionViewController, UICollectionVie
     private let mediaFetchQueue = OperationQueue()
     private let cache = Cache<String, Data>()
     private let cacheVideoThumbnail = Cache<String, UIImage>()
+    private let cacheVideoURL = Cache<String, URL>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -100,11 +101,13 @@ class PostsCollectionViewController: UICollectionViewController, UICollectionVie
     
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: indexPath)
         
-        if let cell = cell as? ImagePostCollectionViewCell,
-            cell.imageView.image != nil {
+        let post = postController.posts[indexPath.row]
+        
+        if post.mediaType == .image {
             self.performSegue(withIdentifier: "ViewImagePost", sender: nil)
+        } else if post.mediaType == .video {
+            self.performSegue(withIdentifier: "ViewVideoPost", sender: nil)
         }
     }
     
@@ -192,6 +195,9 @@ class PostsCollectionViewController: UICollectionViewController, UICollectionVie
                     
                     self.cacheVideoThumbnail.cache(value: thumbnail, for: postID)
                     
+                    // to send it to the detail segue
+                    self.cacheVideoURL.cache(value: fullURL, for: postID)
+                    
                     imagePostCell.setImage(thumbnail)
                 } catch let error {
                     print("Error generating thumbnail: \(error.localizedDescription)")
@@ -222,6 +228,16 @@ class PostsCollectionViewController: UICollectionViewController, UICollectionVie
             destinationVC?.postController = postController
             destinationVC?.post = postController.posts[indexPath.row]
             destinationVC?.imageData = cache.value(for: postID)
+
+        } else if segue.identifier == "ViewVideoPost" {
+            let destinationVC = segue.destination as? VideoPostDetailTableViewController
+            
+            guard let indexPath = collectionView.indexPathsForSelectedItems?.first,
+                let postID = postController.posts[indexPath.row].id else { return }
+            
+            destinationVC?.postController = postController
+            destinationVC?.post = postController.posts[indexPath.row]
+            destinationVC?.videoURL = cacheVideoURL.value(for: postID)
         }
     }
 }

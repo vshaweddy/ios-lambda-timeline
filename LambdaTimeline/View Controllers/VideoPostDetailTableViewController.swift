@@ -1,27 +1,23 @@
 //
-//  ImagePostDetailTableViewController.swift
+//  VideoPostDetailTableViewController.swift
 //  LambdaTimeline
 //
-//  Created by Spencer Curtis on 10/14/18.
-//  Copyright © 2018 Lambda School. All rights reserved.
+//  Created by Vici Shaweddy on 1/24/20.
+//  Copyright © 2020 Lambda School. All rights reserved.
 //
 
 import UIKit
 import AVFoundation
 
-class ImagePostDetailTableViewController: UITableViewController {
+class VideoPostDetailTableViewController: UITableViewController {
     
-    // MARK: - Outlets and Variables
-    
-    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var playerView: PlaybackView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var authorLabel: UILabel!
-    @IBOutlet weak var imageViewAspectRatioConstraint: NSLayoutConstraint!
-    
+
     var post: Post!
     var postController: PostController!
-    var imageData: Data?
-    var mediaData: Data?
+    var videoURL: URL?
     var player: AVPlayer?
     var audioPlayer: AVAudioPlayer? {
         didSet {
@@ -33,6 +29,7 @@ class ImagePostDetailTableViewController: UITableViewController {
         }
     }
     
+    
     private let audioCache = Cache<String, Data>()
     private let audioFetchQueue = OperationQueue()
     
@@ -43,9 +40,9 @@ class ImagePostDetailTableViewController: UITableViewController {
     
     func updateViews() {
         
-        if let imageData = imageData,
-            let image = UIImage(data: imageData) {
-            imageView.image = image
+        if let videoURL = self.videoURL {
+            player = AVPlayer(url: videoURL)
+            playerView.playerLayer.player = player
         }
         
         title = post?.title
@@ -95,9 +92,18 @@ class ImagePostDetailTableViewController: UITableViewController {
     func pause() {
         audioPlayer?.pause()
     }
-    
-    
-    // MARK: - Actions
+
+    // MARK: - Table view data source
+
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        // #warning Incomplete implementation, return the number of sections
+        return 0
+    }
+
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // #warning Incomplete implementation, return the number of rows
+        return 0
+    }
     
     @IBAction func createComment(_ sender: Any) {
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
@@ -118,16 +124,10 @@ class ImagePostDetailTableViewController: UITableViewController {
         
         present(actionSheet, animated: true, completion: nil)
     }
-    
-    // MARK: - Table view data source
-    
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (post?.comments.count ?? 0) - 1
-    }
-    
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "CommentCell", for: indexPath) as? CommentTableViewCell else { return UITableViewCell() }
-        
+
         let comment = post?.comments[indexPath.row + 1]
         
         cell.titleLabel.text = comment?.text != nil && comment?.text?.isEmpty == false ? comment?.text : "Audio"
@@ -135,10 +135,49 @@ class ImagePostDetailTableViewController: UITableViewController {
         cell.playButton.isHidden = comment?.text?.isEmpty == false
         cell.tag = indexPath.row
         cell.delegate = self
-        
+
         return cell
     }
-    
+
+
+    /*
+    // Override to support conditional editing of the table view.
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        // Return false if you do not want the specified item to be editable.
+        return true
+    }
+    */
+
+    /*
+    // Override to support editing the table view.
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            // Delete the row from the data source
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        } else if editingStyle == .insert {
+            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+        }    
+    }
+    */
+
+    /*
+    // Override to support rearranging the table view.
+    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
+
+    }
+    */
+
+    /*
+    // Override to support conditional rearranging of the table view.
+    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        // Return false if you do not want the item to be re-orderable.
+        return true
+    }
+    */
+
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "AudioSegue" {
             if let nc = segue.destination as? UINavigationController,
@@ -148,9 +187,10 @@ class ImagePostDetailTableViewController: UITableViewController {
             }
         }
     }
+
 }
 
-extension ImagePostDetailTableViewController: CommentTableViewCellDelegate {
+extension VideoPostDetailTableViewController: CommentTableViewCellDelegate {
     func didPressPlayButton(tag: Int) {
         let comment = post.comments[tag + 1]
         guard let audio = comment.audio else { return }
@@ -186,7 +226,7 @@ extension ImagePostDetailTableViewController: CommentTableViewCellDelegate {
     }
 }
 
-extension ImagePostDetailTableViewController: AVAudioPlayerDelegate {
+extension VideoPostDetailTableViewController: AVAudioPlayerDelegate {
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
         updateViews()
     }
@@ -198,11 +238,10 @@ extension ImagePostDetailTableViewController: AVAudioPlayerDelegate {
     }
 }
 
-extension ImagePostDetailTableViewController: AudioCommentViewControllerDelegate {
+extension VideoPostDetailTableViewController: AudioCommentViewControllerDelegate {
     func didSave() {
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
     }
 }
-
