@@ -139,6 +139,8 @@ class ImagePostDetailTableViewController: UITableViewController {
         return cell
     }
     
+    // MARK: - Navigation
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "AudioSegue" {
             if let nc = segue.destination as? UINavigationController,

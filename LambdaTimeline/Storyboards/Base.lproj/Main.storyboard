@@ -672,20 +672,20 @@
                             </constraints>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CommentCell" id="I2Q-qv-Gp9" customClass="CommentTableViewCell" customModule="LambdaTimeline" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CommentVideoCell" id="I2Q-qv-Gp9" customClass="CommentVideoTableViewCell" customModule="LambdaTimeline" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="287" width="375" height="64.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="I2Q-qv-Gp9" id="QFy-IX-nfX" customClass="CommentTableViewCell" customModule="LambdaTimeline" customModuleProvider="target">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="I2Q-qv-Gp9" id="QFy-IX-nfX" customClass="CommentVideoTableViewCell" customModule="LambdaTimeline" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="64.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Thf-wO-2np" userLabel="Play Button">
-                                            <rect key="frame" x="339" y="10" width="20" height="44.5"/>
+                                            <rect key="frame" x="339" y="20.5" width="20" height="24"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                             <state key="normal" image="play.circle.fill" catalog="system"/>
                                             <state key="selected" image="pause.circle.fill" catalog="system"/>
                                             <connections>
-                                                <action selector="playPressed:" destination="I2Q-qv-Gp9" eventType="touchUpInside" id="Rhe-Cy-gzd"/>
+                                                <action selector="playPressed:" destination="I2Q-qv-Gp9" eventType="touchUpInside" id="dAL-eb-yKY"/>
                                             </connections>
                                         </button>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="XMY-o9-HCT">
@@ -714,16 +714,16 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstAttribute="trailing" secondItem="Thf-wO-2np" secondAttribute="trailing" constant="16" id="3oj-yf-MVY"/>
-                                        <constraint firstAttribute="bottom" secondItem="XMY-o9-HCT" secondAttribute="bottom" constant="8" id="9BA-Vg-0nQ"/>
-                                        <constraint firstItem="XMY-o9-HCT" firstAttribute="top" secondItem="QFy-IX-nfX" secondAttribute="top" constant="8" id="VtT-JL-gUA"/>
+                                        <constraint firstItem="XMY-o9-HCT" firstAttribute="top" secondItem="QFy-IX-nfX" secondAttribute="top" constant="8" id="9uT-0Z-e4u"/>
                                         <constraint firstItem="XMY-o9-HCT" firstAttribute="leading" secondItem="QFy-IX-nfX" secondAttribute="leading" constant="16" id="XWX-yH-bxf"/>
-                                        <constraint firstItem="Thf-wO-2np" firstAttribute="top" secondItem="QFy-IX-nfX" secondAttribute="top" constant="10" id="oEL-LH-aVo"/>
-                                        <constraint firstAttribute="bottom" secondItem="Thf-wO-2np" secondAttribute="bottom" constant="10" id="xm3-Id-g0Y"/>
+                                        <constraint firstItem="Thf-wO-2np" firstAttribute="centerY" secondItem="QFy-IX-nfX" secondAttribute="centerY" id="cP4-47-kK9"/>
+                                        <constraint firstAttribute="bottom" secondItem="XMY-o9-HCT" secondAttribute="bottom" constant="8" id="gKl-PH-KkL"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="playButton" destination="Thf-wO-2np" id="8J4-Wp-eVY"/>
-                                    <outlet property="titleLabel" destination="1N8-ac-POp" id="Mwh-zF-AHC"/>
+                                    <outlet property="authorLabel" destination="iqW-z8-Ud9" id="KXY-EN-8ta"/>
+                                    <outlet property="playButton" destination="Thf-wO-2np" id="1PA-Yf-LAL"/>
+                                    <outlet property="titleLabel" destination="1N8-ac-POp" id="5Y1-fR-hVb"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -743,7 +743,7 @@
                         <outlet property="authorLabel" destination="RNf-SX-mYK" id="JvH-kr-hce"/>
                         <outlet property="playerView" destination="lfA-MC-VgV" id="SFr-rX-8q4"/>
                         <outlet property="titleLabel" destination="VeP-Gf-JiM" id="XDe-C1-06D"/>
-                        <segue destination="54e-ZM-kVK" kind="presentation" identifier="AudioSegue" id="iyA-PI-yoC"/>
+                        <segue destination="54e-ZM-kVK" kind="presentation" identifier="AudioSegue" id="2gn-lP-jPE"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gfB-xC-vxJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -760,6 +760,6 @@
         <image name="xmark" catalog="system" width="64" height="56"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="iyA-PI-yoC"/>
+        <segue reference="2gn-lP-jPE"/>
     </inferredMetricsTieBreakers>
 </document>
