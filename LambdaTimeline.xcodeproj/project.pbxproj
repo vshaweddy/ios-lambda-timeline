@@ -33,6 +33,8 @@
 		E35AFD2B23D4BD9300988FA2 /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35AFD2A23D4BD9300988FA2 /* CommentTableViewCell.swift */; };
 		E35AFD2D23D52DB700988FA2 /* RecordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35AFD2C23D52DB700988FA2 /* RecordController.swift */; };
 		E3C19E3B23DF92AF00F7E09A /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C19E3A23DF92AE00F7E09A /* LocationManager.swift */; };
+		E3C19E3D23DFE0B600F7E09A /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C19E3C23DFE0B600F7E09A /* MapViewController.swift */; };
+		E3C19E3F23DFE15B00F7E09A /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C19E3E23DFE15B00F7E09A /* TabBarController.swift */; };
 		E3D05B3D23DA3CFF00F3CE10 /* PlaybackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D05B3C23DA3CFF00F3CE10 /* PlaybackView.swift */; };
 		E3D05B4123DB835300F3CE10 /* VideoPostDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D05B4023DB835300F3CE10 /* VideoPostDetailTableViewController.swift */; };
 		E3D05B4323DBE35000F3CE10 /* CommentVideoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D05B4223DBE35000F3CE10 /* CommentVideoTableViewCell.swift */; };
@@ -74,6 +76,8 @@
 		E35AFD2A23D4BD9300988FA2 /* CommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
 		E35AFD2C23D52DB700988FA2 /* RecordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordController.swift; sourceTree = "<group>"; };
 		E3C19E3A23DF92AE00F7E09A /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		E3C19E3C23DFE0B600F7E09A /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		E3C19E3E23DFE15B00F7E09A /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		E3D05B3C23DA3CFF00F3CE10 /* PlaybackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaybackView.swift; sourceTree = "<group>"; };
 		E3D05B4023DB835300F3CE10 /* VideoPostDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPostDetailTableViewController.swift; sourceTree = "<group>"; };
 		E3D05B4223DBE35000F3CE10 /* CommentVideoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentVideoTableViewCell.swift; sourceTree = "<group>"; };
@@ -184,6 +188,8 @@
 				E3F5228A23D805F9005EF0D6 /* CameraViewController.swift */,
 				46D571F72173FC2700E7FF73 /* ImagePostDetailTableViewController.swift */,
 				E3D05B4023DB835300F3CE10 /* VideoPostDetailTableViewController.swift */,
+				E3C19E3C23DFE0B600F7E09A /* MapViewController.swift */,
+				E3C19E3E23DFE15B00F7E09A /* TabBarController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -378,6 +384,7 @@
 				46A0366D2170158900E7FF73 /* SignInViewController.swift in Sources */,
 				46CFE6FB21714E6100E7FF73 /* Author.swift in Sources */,
 				46CFE6F92170862C00E7FF73 /* ShiftableViewController.swift in Sources */,
+				E3C19E3F23DFE15B00F7E09A /* TabBarController.swift in Sources */,
 				E3D05B4123DB835300F3CE10 /* VideoPostDetailTableViewController.swift in Sources */,
 				E3F5228B23D805F9005EF0D6 /* CameraViewController.swift in Sources */,
 				4646377C216FDE4B00E7FF73 /* AppDelegate.swift in Sources */,
@@ -402,6 +409,7 @@
 				E3C19E3B23DF92AF00F7E09A /* LocationManager.swift in Sources */,
 				46D571F52173CF3E00E7FF73 /* UIImage+Ratio.swift in Sources */,
 				46463792216FFDD900E7FF73 /* Comment.swift in Sources */,
+				E3C19E3D23DFE0B600F7E09A /* MapViewController.swift in Sources */,
 				46CFE6F721707FA600E7FF73 /* UIViewController+InformationalAlert.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

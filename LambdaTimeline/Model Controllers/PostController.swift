@@ -31,6 +31,7 @@ class PostController {
             guard let mediaURL = mediaURL else { completion(false); return }
             
             let newPost = Post(title: title, mediaType: mediaType, mediaURL: mediaURL, ratio: ratio, author: author)
+            newPost.geotag = geotag
             
             self.postsRef.childByAutoId().setValue(newPost.dictionaryRepresentation) { (error, ref) in
                 if let error = error {

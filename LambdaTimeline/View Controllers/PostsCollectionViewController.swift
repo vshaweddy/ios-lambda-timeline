@@ -17,7 +17,6 @@ class PostsCollectionViewController: UICollectionViewController, UICollectionVie
     @IBOutlet weak var geotagSwitch: UISwitch!
     
     // MARK: - Properties
-    private let postController = PostController()
     private var operations = [String : Operation]()
     private let mediaFetchQueue = OperationQueue()
     private let cache = Cache<String, Data>()
@@ -25,12 +24,14 @@ class PostsCollectionViewController: UICollectionViewController, UICollectionVie
     private let cacheVideoURL = Cache<String, URL>()
     private let locationManager = LocationManager()
     
+    var postController: PostController!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.locationManager.setUp()
         
-        postController.observePosts { (_) in
+        self.postController.observePosts { (_) in
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
             }
