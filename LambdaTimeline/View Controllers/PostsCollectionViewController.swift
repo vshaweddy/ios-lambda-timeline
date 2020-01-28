@@ -13,6 +13,9 @@ import FirebaseUI
 
 class PostsCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
+    // MARK: - Outlets
+    @IBOutlet weak var geotagSwitch: UISwitch!
+    
     // MARK: - Properties
     private let postController = PostController()
     private var operations = [String : Operation]()
@@ -20,15 +23,23 @@ class PostsCollectionViewController: UICollectionViewController, UICollectionVie
     private let cache = Cache<String, Data>()
     private let cacheVideoThumbnail = Cache<String, UIImage>()
     private let cacheVideoURL = Cache<String, URL>()
+    private let locationManager = LocationManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.locationManager.setUp()
         
         postController.observePosts { (_) in
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
             }
         }
+    }
+    
+    // MARK: - Actions
+    @IBAction func toggleGeotag(_ sender: Any) {
+        self.locationManager.shouldSendGeotag = geotagSwitch.isOn
     }
     
     @IBAction func addPost(_ sender: Any) {
@@ -216,14 +227,20 @@ class PostsCollectionViewController: UICollectionViewController, UICollectionVie
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "AddImagePost" {
             let destinationVC = segue.destination as? ImagePostViewController
-            destinationVC?.postController = postController
+            destinationVC?.postController = self.postController
+            destinationVC?.locationManager = self.locationManager
+            
+        } else if segue.identifier == "AddVideoPost" {
+            let destinationVC = segue.destination as? CameraViewController
+            destinationVC?.postController = self.postController
+            destinationVC?.locationManager = self.locationManager
             
         } else if segue.identifier == "ViewImagePost" {
             
             let destinationVC = segue.destination as? ImagePostDetailTableViewController
             
             guard let indexPath = collectionView.indexPathsForSelectedItems?.first,
-                let postID = postController.posts[indexPath.row].id else { return }
+                let postID = self.postController.posts[indexPath.row].id else { return }
             
             destinationVC?.postController = postController
             destinationVC?.post = postController.posts[indexPath.row]

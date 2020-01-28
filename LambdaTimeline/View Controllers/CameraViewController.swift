@@ -19,6 +19,7 @@ class CameraViewController: UIViewController {
     var player: AVPlayer!
     var videoURL: URL?
     var postController = PostController()
+    var locationManager: LocationManager?
     var playerView: PlaybackView!
     
     override var prefersStatusBarHidden: Bool {
@@ -147,7 +148,7 @@ class CameraViewController: UIViewController {
             do {
                 let videoData = try Data(contentsOf: videoURL)
                 
-                self.postController.createPost(with: titleText, ofType: .video, mediaData: videoData)
+                self.postController.createPost(with: titleText, ofType: .video, mediaData: videoData, geotag: self.locationManager?.currentLocation)
                 
                 DispatchQueue.main.async {
                     self.dismiss(animated: true, completion: nil)

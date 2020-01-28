@@ -21,7 +21,6 @@ class ImagePostDetailTableViewController: UITableViewController {
     
     var post: Post!
     var postController: PostController!
-    var geotag: CLLocationCoordinate2D?
     var imageData: Data?
     var mediaData: Data?
     var player: AVPlayer?

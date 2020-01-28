@@ -11,8 +11,15 @@ import MapKit
 import CoreLocation
 
 class LocationManager: NSObject, CLLocationManagerDelegate {
-    var locationManager = CLLocationManager()
-    var currentLocation: CLLocationCoordinate2D?
+    private let locationManager = CLLocationManager()
+    private var lastLocation: CLLocationCoordinate2D?
+    
+    var shouldSendGeotag: Bool = true
+    var currentLocation: CLLocationCoordinate2D? {
+        get {
+            return shouldSendGeotag ? self.lastLocation : nil
+        }
+    }
     
     func setUp() {
         self.locationManager.delegate = self
@@ -32,6 +39,6 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location = locations.first
-        self.currentLocation = location?.coordinate
+        self.lastLocation = location?.coordinate
     }
 }

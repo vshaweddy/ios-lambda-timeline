@@ -29,6 +29,7 @@ class ImagePostViewController: ShiftableViewController {
     var postController: PostController!
     var post: Post?
     var imageData: Data?
+    var locationManager: LocationManager?
     
     var originalImage: UIImage?
     
@@ -186,7 +187,7 @@ class ImagePostViewController: ShiftableViewController {
             return
         }
         
-        postController.createPost(with: title, ofType: .image, mediaData: imageData, ratio: imageView.image?.ratio) { (success) in
+        postController.createPost(with: title, ofType: .image, mediaData: imageData, ratio: imageView.image?.ratio, geotag: self.locationManager?.currentLocation) { (success) in
             guard success else {
                 DispatchQueue.main.async {
                     self.presentInformationalAlertController(title: "Error", message: "Unable to create post. Try again.")
