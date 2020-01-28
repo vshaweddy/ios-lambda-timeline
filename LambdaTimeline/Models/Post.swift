@@ -8,6 +8,8 @@
 
 import Foundation
 import FirebaseAuth
+import CoreLocation
+import MapKit
 
 enum MediaType: String {
     case image
@@ -15,7 +17,7 @@ enum MediaType: String {
     case video
 }
 
-class Post {
+class Post: NSObject {
     
     init(title: String, mediaType: MediaType, mediaURL: URL, ratio: CGFloat? = nil, author: Author, timestamp: Date = Date()) {
         self.mediaURL = mediaURL
@@ -78,4 +80,14 @@ class Post {
     static private let commentsKey = "comments"
     static private let timestampKey = "timestamp"
     static private let idKey = "id"
+}
+
+extension Post: MKAnnotation {
+    var coordinate: CLLocationCoordinate2D {
+        <#code#>
+    }
+    
+    var subtitle: String? {
+        author.displayName
+    }
 }

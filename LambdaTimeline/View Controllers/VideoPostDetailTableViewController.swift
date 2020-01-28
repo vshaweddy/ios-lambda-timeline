@@ -8,6 +8,7 @@
 
 import UIKit
 import AVFoundation
+import CoreLocation
 
 class VideoPostDetailTableViewController: UITableViewController {
     
@@ -17,6 +18,7 @@ class VideoPostDetailTableViewController: UITableViewController {
 
     var post: Post!
     var postController: PostController!
+    var geotag: CLLocationCoordinate2D?
     var videoURL: URL?
     var player: AVPlayer!
     var audioPlayer: AVAudioPlayer? {

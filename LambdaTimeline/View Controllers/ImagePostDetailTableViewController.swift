@@ -8,11 +8,12 @@
 
 import UIKit
 import AVFoundation
+import CoreLocation
 
 class ImagePostDetailTableViewController: UITableViewController {
     
     // MARK: - Outlets and Variables
-    
+
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var authorLabel: UILabel!
@@ -20,6 +21,7 @@ class ImagePostDetailTableViewController: UITableViewController {
     
     var post: Post!
     var postController: PostController!
+    var geotag: CLLocationCoordinate2D?
     var imageData: Data?
     var mediaData: Data?
     var player: AVPlayer?

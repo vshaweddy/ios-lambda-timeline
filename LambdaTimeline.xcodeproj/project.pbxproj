@@ -32,6 +32,7 @@
 		E35AFD1B23D2A71600988FA2 /* AudioCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35AFD1A23D2A71600988FA2 /* AudioCommentViewController.swift */; };
 		E35AFD2B23D4BD9300988FA2 /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35AFD2A23D4BD9300988FA2 /* CommentTableViewCell.swift */; };
 		E35AFD2D23D52DB700988FA2 /* RecordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35AFD2C23D52DB700988FA2 /* RecordController.swift */; };
+		E3C19E3B23DF92AF00F7E09A /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C19E3A23DF92AE00F7E09A /* LocationManager.swift */; };
 		E3D05B3D23DA3CFF00F3CE10 /* PlaybackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D05B3C23DA3CFF00F3CE10 /* PlaybackView.swift */; };
 		E3D05B4123DB835300F3CE10 /* VideoPostDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D05B4023DB835300F3CE10 /* VideoPostDetailTableViewController.swift */; };
 		E3D05B4323DBE35000F3CE10 /* CommentVideoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D05B4223DBE35000F3CE10 /* CommentVideoTableViewCell.swift */; };
@@ -72,6 +73,7 @@
 		E35AFD1A23D2A71600988FA2 /* AudioCommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioCommentViewController.swift; sourceTree = "<group>"; };
 		E35AFD2A23D4BD9300988FA2 /* CommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
 		E35AFD2C23D52DB700988FA2 /* RecordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordController.swift; sourceTree = "<group>"; };
+		E3C19E3A23DF92AE00F7E09A /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		E3D05B3C23DA3CFF00F3CE10 /* PlaybackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaybackView.swift; sourceTree = "<group>"; };
 		E3D05B4023DB835300F3CE10 /* VideoPostDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPostDetailTableViewController.swift; sourceTree = "<group>"; };
 		E3D05B4223DBE35000F3CE10 /* CommentVideoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentVideoTableViewCell.swift; sourceTree = "<group>"; };
@@ -216,6 +218,7 @@
 				464637982170048900E7FF73 /* FirebaseConvertible.swift */,
 				46CFE6FC217154F500E7FF73 /* Networking.swift */,
 				46CFE6F82170862C00E7FF73 /* ShiftableViewController.swift */,
+				E3C19E3A23DF92AE00F7E09A /* LocationManager.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -396,6 +399,7 @@
 				464637992170048900E7FF73 /* FirebaseConvertible.swift in Sources */,
 				46A0366A21700F5100E7FF73 /* PostsCollectionViewController.swift in Sources */,
 				E35AFD2D23D52DB700988FA2 /* RecordController.swift in Sources */,
+				E3C19E3B23DF92AF00F7E09A /* LocationManager.swift in Sources */,
 				46D571F52173CF3E00E7FF73 /* UIImage+Ratio.swift in Sources */,
 				46463792216FFDD900E7FF73 /* Comment.swift in Sources */,
 				46CFE6F721707FA600E7FF73 /* UIViewController+InformationalAlert.swift in Sources */,
